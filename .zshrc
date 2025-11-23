@@ -1,0 +1,214 @@
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+export ZSH="$HOME/.oh-my-zsh"
+ZSH_THEME="powerlevel10k/powerlevel10k"
+
+# Reevaluate the prompt string each time it's displaying a prompt
+setopt prompt_subst
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+autoload bashcompinit && bashcompinit
+autoload -Uz compinit
+compinit
+
+export LANG=en_IN.UTF-8
+export LC_ALL=en_IN.UTF-8
+
+# ==============================
+# Plugins
+# ==============================
+plugins=(
+  git
+  sudo
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+)
+
+# Enable plugins and their features.
+# source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#c99e84'
+source $ZSH/oh-my-zsh.sh
+
+# ==============================
+# Key Bindings
+# ==============================
+bindkey '^w' autosuggest-execute
+bindkey '^e' autosuggest-accept
+bindkey '^u' autosuggest-toggle
+bindkey '^l' vi-forward-word
+bindkey '^k' up-line-or-search
+bindkey '^j' down-line-or-search
+bindkey jk vi-cmd-mode
+
+# ==============================
+# Aliases
+# ==============================
+
+# Basic Aliases
+alias rel='source ~/.zshrc'
+alias mkdir='mkdir -p'
+alias rmf='rm -rf'
+alias cl='clear'
+alias e='exit'
+
+#######################################################
+# ZSH Basic Options
+#######################################################
+
+setopt autocd              # change directory just by typing its name
+setopt correct             # auto correct mistakes
+setopt interactivecomments # allow comments in interactive mode
+setopt magicequalsubst     # enable filename expansion for arguments of the form ‘anything=expression’
+setopt nonomatch           # hide error message if there is no match for the pattern
+setopt notify              # report the status of background jobs immediately
+setopt numericglobsort     # sort filenames numerically when it makes sense
+setopt promptsubst         # enable command substitution in prompt
+
+
+# ---- FZF -----
+
+# Set up fzf key bindings and fuzzy completion
+eval "$(fzf --zsh)"
+
+# --- setup fzf theme ---
+fg="#CBE0F0"
+bg="#011628"
+bg_highlight="#143652"
+purple="#B388FF"
+blue="#06BCE4"
+cyan="#2CF9ED"
+
+
+export FZF_DEFAULT_OPTS="--color=fg:${fg},bg:${bg},hl:${purple},fg+:${fg},bg+:${bg_highlight},hl+:${purple},info:${blue},prompt:${cyan},pointer:${cyan},marker:${cyan},spinner:${cyan},header:${cyan}"
+
+# ----- Bat (better cat) -----
+export BAT_THEME=tokyonight_night
+
+#######################################################
+# Environment Variables
+#######################################################
+export EDITOR=nvim visudo
+export VISUAL=nvim visudo
+export SUDO_EDITOR=nvim
+export FCEDIT=nvim
+alias vi='nvim'
+
+# Lazy aliases
+alias lg="lazygit"
+alias ldc="lazydocker"
+
+# Node.js Aliases
+alias nrd='npm run dev'
+alias ys='yarn start'
+alias yd='yarn dev'
+
+# Docker Aliases
+alias dco="docker compose"
+alias dps="docker ps"
+alias dpa="docker ps -a"
+alias di="docker images"
+alias dl="docker ps -l -q"
+alias dx="docker exec -it"
+
+# Git Aliases
+alias gi="git init"
+alias gcl="git clone"
+
+alias gs="git status --short"
+alias gd="git diff"
+alias gds="gd --staged"
+
+alias ga="git add"
+alias gap="git add --patch"
+alias gr="git reset"
+alias gc="git commit"
+
+alias gp="git push"
+alias gu="git pull"
+
+alias gl='git log --graph --all --pretty=format:"%C(magenta)%h %C(white) %an  %ar%C(blue)  %D%n%s%n"'
+alias gb="git branch"
+
+alias gm="git merge"
+alias grb="git rebase"
+
+
+alias gsw="git switch"
+
+# Alias for clipboard
+alias c='termux-clipboard-set'
+alias v='termux-clipboard-get'
+
+# Yazi Alias
+alias y='yazi'
+
+# Fastfetch
+alias ff='fastfetch'
+
+# TMUX Aliases
+alias t='tmux'
+alias tl='tmux ls'
+alias ta='tmux attach -t'
+alias tk='tmux kill-session -t'
+alias tn='tmux new -s'
+alias td='tmux detach'
+
+# Pkg Package Manager Aliases
+alias u='pkg update'
+alias i='pkg install'
+alias r='pkg remove'
+alias s='pkg search'
+
+# Directory Navigation Aliases
+alias ..='cd ..'
+alias ...='cd ../..'
+alias .3='cd ../../..'
+alias .4='cd ../../../..'
+alias .5='cd ../../../../..'
+
+# Eza (Enhanced ls) Aliases
+alias dir="eza --color=always --git --no-filesize --icons=always --no-time --no-user --no-permissions"
+alias ls="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"
+alias lsp="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user"
+alias lsa="eza --color=always --long --git --icons=always -b -a --total-size"
+alias l="eza -l --icons --git -a"
+alias lt="eza --tree --level=2 --long --icons --git"
+alias tree="eza --tree --level=3 --icons --git"
+
+# ==============================
+# Environment Variables
+# ==============================
+
+# History Settings
+HISTSIZE=10000
+HISTFILE=~/.zsh_history
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+
+# ==============================
+# Zoxide Initialization
+# ==============================
+eval "$(zoxide init zsh)"
+alias cd='z'
+
+
+# Go Path
+export PATH=$PATH:$HOME/go/bin
+
+# Rust Path
+export PATH="$HOME/.cargo/bin:$PATH"
+
+# JAVA17 Path
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk
+export PATH=$JAVA_HOME/bin:$PATH
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
