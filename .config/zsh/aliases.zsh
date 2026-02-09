@@ -73,25 +73,12 @@ alias gm="git merge"
 alias grb="git rebase"
 
 alias gsw="git switch"
-alias update-all-branches="git fetch origin && for branch in \$(git branch | sed 's/^\*//'); do git checkout \$branch && git merge main; done && git checkout main"
-
-# ==============================
-# System Management
-# ==============================
-
-alias off='shutdown -h now'
 
 # ==============================
 # Clipboard Aliases
 # ==============================
-
-if [ "$WAYLAND_DISPLAY" ]; then
-    alias c='wl-copy'
-    alias v='wl-paste'
-else
-    alias c='xsel --input --clipboard'
-    alias v='xsel --output --clipboard'
-fi
+alias c='termux-clipboard-set'
+alias v='termux-clipboard-get'
 
 # ==============================
 # File Manager
@@ -102,21 +89,10 @@ alias y='yazi'
 # ==============================
 # Miscellaneous Aliases
 # ==============================
+alias arch="proot-distro login archlinux"
 alias weather='curl wttr.in/orlando?u'
 alias ff='fastfetch'
 alias hi='pgrep -x dunst >/dev/null && notify-send "Hi there!" "Welcome to the ${XDG_CURRENT_DESKTOP:-${DESKTOP_SESSION:-$(wmctrl -m 2>/dev/null | grep "Name:" | cut -d" " -f2)}} desktop! 🍃" -i ""'
-
-# ==============================
-# TTY-based Fun Tools
-# ==============================
-
-alias tt='ttyper'
-alias tc='tty-clock -t'
-alias sl='sl --help -F -a'
-alias p='pipes.sh'
-alias cb='cbonsai -liv'
-alias aq='asciiquarium'
-alias cm='cmatrix -abs'
 
 # ==============================
 # TMUX Aliases
@@ -130,13 +106,12 @@ alias tn='tmux new -s'
 alias td='tmux detach'
 
 # ==============================
-# Package Manager (Yay)
+# Package Manager 
 # ==============================
-
-alias u='yay -Sy && yay -Syu -y'
-alias i='yay -S'
-alias r='yay -Rns'
-alias s="yay -Slq | fzf --multi --preview 'yay -Sii {1}' --preview-window=down:75% | xargs -ro yay -S"
+alias u='pkg update'
+alias i='pkg install'
+alias r='pkg remove'
+alias s='pkg search'
 
 # ==============================
 # Directory Navigation
@@ -160,15 +135,6 @@ alias l="eza -l --icons --git -a"
 alias lt="eza --tree --level=2 --long --icons --git"
 TREE_IGNORE="node_modules|.git|dist|build|coverage|.next|.cache|vendor"
 alias tree="eza --tree --level=3 --icons --git --ignore-glob=\"$TREE_IGNORE\""
-
-# ==============================
-# Network Manager
-# ==============================
-
-alias status='nmcli device status'
-alias list='nmcli device wifi list'
-alias connect='nmcli device wifi connect'
-alias disconnect='nmcli device disconnect'
 
 # ============================================================================
 # SYSTEM INFO

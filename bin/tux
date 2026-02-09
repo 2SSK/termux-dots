@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+TUX_DIR="$HOME/dotfiles/tux"
+CMD="$1"
+
+# Load core utils
+source "$TUX_DIR/core/colors.sh"
+source "$TUX_DIR/core/utils.sh"
+
+CMD_DIR="$TUX_DIR/commands"
+
+case "$CMD" in
+  bootstrap) bash "$CMD_DIR/bootstrap.sh" ;;
+  upv)       bash "$CMD_DIR/upv.sh" ;;
+  help | "") bash "$CMD_DIR/help.sh" ;;
+  *)
+    error "Unknown command: $CMD"
+    ;;
+esac
