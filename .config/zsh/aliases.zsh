@@ -89,6 +89,7 @@ alias y='yazi'
 # ==============================
 # Miscellaneous Aliases
 # ==============================
+alias sarch="proot-distro login archlinux --user root"
 alias arch="proot-distro login archlinux"
 alias weather='curl wttr.in/orlando?u'
 alias ff='fastfetch'
