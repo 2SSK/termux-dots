@@ -1,5 +1,5 @@
 # Stow local ignore file
-# Files and directories listed here will not be stowed
+# Each line is a Perl regular expression
 
 # Git files
 \.git
@@ -9,18 +9,18 @@
 # Documentation
 README.*
 LICENSE
-*.md
+.*\.md$
 
 # Editor files
 \.vscode
 \.idea
-*~
-*.swp
-*.swo
+.*~$
+.*\.swp$
+.*\.swo$
 
 # OS files
 \.DS_Store
-Thumbs.db
+Thumbs\.db
 
 # Stow itself
 \.stow-local-ignore
@@ -29,11 +29,13 @@ Thumbs.db
 ^bash$
 ^vim$
 
-screenshots/
-scripts/
-arch/
-bootstrap.sh
-.bookmarks/
+# Directories
+^screenshots$
+^scripts$
+^arch$
+^\.bookmarks$
 
-tux
-bin
+# Misc files
+^bootstrap\.sh$
+^tux$
+^bin$
