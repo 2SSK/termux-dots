@@ -196,4 +196,3 @@ let g:netrw_winsize = 25
 augroup netrw_setup | au!
     au FileType netrw nmap <buffer> l <CR>
 augroup END
-

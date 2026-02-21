@@ -75,10 +75,17 @@ alias grb="git rebase"
 alias gsw="git switch"
 
 # ==============================
-# Clipboard Aliases
+# Clipboard Aliases (Auto-detect)
 # ==============================
-alias c='termux-clipboard-set'
-alias v='termux-clipboard-get'
+if command -v wl-copy >/dev/null 2>&1; then
+  # Wayland
+  alias c='wl-copy'
+  alias v='wl-paste'
+elif command -v xclip >/dev/null 2>&1; then
+  # X11
+  alias c='xclip -selection clipboard'
+  alias v='xclip -selection clipboard -o'
+fi
 
 # ==============================
 # File Manager
@@ -89,8 +96,10 @@ alias y='yazi'
 # ==============================
 # Miscellaneous Aliases
 # ==============================
-alias sarch="proot-distro login archlinux --user root"
-alias arch="proot-distro login archlinux"
+# proot-distro is Termux-specific, make it conditional
+if command -v proot-distro >/dev/null 2>&1; then
+  alias arch="proot-distro login archlinux"
+fi
 alias weather='curl wttr.in/orlando?u'
 alias ff='fastfetch'
 alias hi='pgrep -x dunst >/dev/null && notify-send "Hi there!" "Welcome to the ${XDG_CURRENT_DESKTOP:-${DESKTOP_SESSION:-$(wmctrl -m 2>/dev/null | grep "Name:" | cut -d" " -f2)}} desktop! 🍃" -i ""'
@@ -107,12 +116,12 @@ alias tn='tmux new -s'
 alias td='tmux detach'
 
 # ==============================
-# Package Manager 
+# Package Manager (yay for AUR + pacman)
 # ==============================
-alias u='pkg update'
-alias i='pkg install'
-alias r='pkg remove'
-alias s='pkg search'
+alias u='yay -Syu'
+alias i='yay -S'
+alias r='yay -R'
+alias s='yay -Ss'
 
 # ==============================
 # Directory Navigation
