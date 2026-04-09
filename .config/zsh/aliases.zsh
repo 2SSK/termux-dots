@@ -98,7 +98,7 @@ alias y='yazi'
 # ==============================
 # proot-distro is Termux-specific, make it conditional
 if command -v proot-distro >/dev/null 2>&1; then
-  alias arch="proot-distro login archlinux"
+  alias ubuntu="proot-distro login ubuntu"
 fi
 alias weather='curl wttr.in/orlando?u'
 alias ff='fastfetch'
@@ -116,13 +116,15 @@ alias tn='tmux new -s'
 alias td='tmux detach'
 
 # ==============================
-# Package Manager (yay for AUR + pacman)
+# Package Manager 
 # ==============================
-alias u='yay -Syu'
-alias i='yay -S'
-alias r='yay -R'
-alias s='yay -Ss'
-
+alias u='pkg update -y && pkg upgrade -y'
+alias i='pkg install'
+alias r='pkg uninstall'
+alias s='pkg search'
+alias qi='pkg show'
+alias pls='pkg list-installed'
+alias pcl='pkg autoclean'
 # ==============================
 # Directory Navigation
 # ==============================
