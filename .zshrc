@@ -29,5 +29,6 @@ source_if_exists "$ZSH_CONFIG_DIR/tools.zsh"        # External tools (fzf, zoxid
 
 # Load local overrides (gitignored personal settings)
 source_if_exists "$ZSH_CONFIG_DIR/local.zsh"
+source_if_exists "$ZSH_CONFIG_DIR/servers.zsh"
 
 [[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"

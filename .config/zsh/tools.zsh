@@ -22,7 +22,7 @@ purple="#bb9af7"
 blue="#7da6ff"
 cyan="#0db9d7"
 
-export FZF_DEFAULT_OPTS="--color=fg:${fg},bg:${bg},hl:${purple},fg+:${fg},bg+:${bg_highlight},hl+:${purple},info:${blue},prompt:${cyan},pointer:${cyan},marker:${cyan},spinner:${cyan},header:${cyan}"
+export FZF_DEFAULT_OPTS="--color=fg:${fg},bg+:-1,hl:${purple},fg+:${fg},bg+:${bg_highlight},hl+:${purple},info:${blue},prompt:${cyan},pointer:${cyan},marker:${cyan},spinner:${cyan},header:${cyan}"
 
 
 # Preview for files (use bat if available)
